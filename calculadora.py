@@ -29,7 +29,7 @@ def prueba_caso_normal_2():
 
     cuota_esperada = 1_504_447
 
-    if(round(cuota_calculada,0) == round(cuota_esperada,0)):
+    if(round(cuota_calculada,2) == round(cuota_esperada,2)):
         print("prueba exitosa¡")
     else:
         print("prueba fallida¡")

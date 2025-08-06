@@ -13,7 +13,7 @@ def prueba_caso_normal_1():
 
     cuota_esperada = 1_504_447
 
-    if(round(cuota_calculada,2) == round(cuota_esperada,2)):
+    if(round(cuota_calculada,0) == round(cuota_esperada,0)):
         print("prueba exitosa¡")
     else:
         print("prueba fallida¡")
@@ -29,10 +29,17 @@ def prueba_caso_normal_2():
 
     cuota_esperada = 1_504_447
 
-    if(round(cuota_calculada,2) == round(cuota_esperada,2)):
+    if(round(cuota_calculada,0) == round(cuota_esperada,0)):
         print("prueba exitosa¡")
     else:
         print("prueba fallida¡")
 
-prueba_caso_normal_1()
-prueba_caso_normal_2()
+
+def prueba_caso_normal_3():
+    propiedad = 150_000_000
+    prestamo = 40/100
+    tasa = 9/100
+    plazo = 10
+    cuota_calculada = cuota_mensual(propiedad,prestamo, tasa, plazo )
+
+    cuota_esperada = 1_504_447

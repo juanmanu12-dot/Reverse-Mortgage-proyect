@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     
     unittest.main()
-    def maximo_permitido(self):
+    def test_extraordinario1(self):
         propiedad = 1500000000
         prestamo = 60/100
         tasa = 12/100
@@ -56,8 +56,31 @@ if __name__ == '__main__':
     
         cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
     
-        cuota_esperada = 9479_017
+        cuota_esperada = 9479017.28
     
         self.assertAlmostEqual( cuota_esperada, cuota_calculada)
 if __name__ == '__main__':
    unittest.main()
+   
+   def test_extraordinario2(self):
+        propiedad = 80000000
+        prestamo =30/100
+        tasa = 9/100
+        plazo = 10
+        
+        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        cuota_esperada =  304021.86
+        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+if __name__ == '__main__':
+    unittest.main()
+    
+    def test_extraordinario3(self):
+        propiedad = 600000000
+        prestamo = 50/100
+        tasa = 12/100
+        plazo = 5
+        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        cuota_esperada =  6597782.21
+        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+if __name__ == '__main__':
+    unittest.main()

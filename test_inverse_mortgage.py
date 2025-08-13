@@ -16,8 +16,7 @@ class TestInverseMortgage(unittest.TestCase):
         
         self.assertAlmostEqual(cuota_esperada, cuota_calculada, 2)
 
-if __name__ == '__main__':
-    unittest.main()
+
     def test_cuota_mensual_2(self):
         propiedad = 200000000
         prestamo = 35/100
@@ -29,8 +28,8 @@ if __name__ == '__main__':
         cuota_esperada = 1875301.89
     
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
-if __name__ == '__main__':
-    unittest.main()
+
+
     def test_cuota_mensual_3(self):
         propiedad = 600000000
         prestamo = 50/100
@@ -42,13 +41,13 @@ if __name__ == '__main__':
         cuota_esperada = 2995140.66
     
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
-if __name__ == '__main__':
+
 
 
 
     
     unittest.main()
-    def test_extraordinario1(self):
+    def  maximo_permitido(self):
         propiedad = 1500000000
         prestamo = 60/100
         tasa = 12/100
@@ -59,10 +58,9 @@ if __name__ == '__main__':
         cuota_esperada = 9479017.28
     
         self.assertAlmostEqual( cuota_esperada, cuota_calculada)
-if __name__ == '__main__':
-   unittest.main()
+
    
-   def test_extraordinario2(self):
+    def minimo_permitido(self):
         propiedad = 80000000
         prestamo =30/100
         tasa = 9/100
@@ -71,10 +69,9 @@ if __name__ == '__main__':
         cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
         cuota_esperada =  304021.86
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
-if __name__ == '__main__':
-    unittest.main()
+
     
-    def test_extraordinario3(self):
+    def plazo_minimo(self):
         propiedad = 600000000
         prestamo = 50/100
         tasa = 12/100
@@ -82,5 +79,17 @@ if __name__ == '__main__':
         cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
         cuota_esperada =  6597782.21
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+
+
+    
+    def test_error_compra(self):
+        propiedad = 0
+        prestamo = 50/100
+        tasa = 10/100
+        plazo = 15
+        
+        with self.assertRaises(Exception):
+            cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
+
 if __name__ == '__main__':
     unittest.main()

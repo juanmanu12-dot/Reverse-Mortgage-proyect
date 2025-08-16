@@ -20,4 +20,4 @@ Esta aplicación permite al usuario calcular la cuota mensual que podría recibi
 
 ## Autores
 -Esteban Arias Salazar<br>
--Valeria Atehortua<br>
+-Nicol Valeria Atehortua<br>

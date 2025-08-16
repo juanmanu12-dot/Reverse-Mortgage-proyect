@@ -1,57 +1,65 @@
-class ErrorValorPropiedad(Exception):
-    pass
-class ErrorTasa(Exception):
-    pass
-class ErrorPlazo(Exception):
-    pass
-class ErrorPrestamo(Exception):
-    pass
 
+class Errorcompra(Exception):
+    def __init__(self, *args):
+        super().__init__("ERROR: el valor de la propiedad no puede ser cero")
 
-def cuota_mensual(propiedad,prestamo, tasa, plazo):
+class Errortasa(Exception):
+    def __init__(self, *args):
+        super().__init__("ERROR: la tasa de interés no puede ser cero o negativa")
 
-    if propiedad  < 80000000:
-        raise ErrorValorPropiedad("El valor de la propiedad no puede ser menor a $80.000.000")
-    
-    if tasa < 0.09 or tasa > 0.12:
-        raise ErrorTasa("La tasa de interes debe estar entre 9% y 12%")
-    
-    if plazo < 5 or plazo > 25:
-        raise ErrorPlazo("El plazo debe estar entre 5 y 25 años")
-    
-    if prestamo < 0.3 or prestamo > 0.6:
-        raise ErrorPrestamo("El porcentaje de prestamo debe estar entre 30% y 60%")
-    else :
-        return (propiedad * prestamo) / ((1-(1+tasa/12)**(-plazo*12))/(tasa/12))
+class Errorprestamo(Exception):
+    def __init__(self, *args):
+        super().__init__("ERROR: el porcentaje del préstamo no puede superar el 60%")
 
-def monto_total_prestamo(propiedad, prestamo):
-
-    if propiedad < 80000000:
-        raise ErrorValorPropiedad("El valor de la propiedad no puede ser menor a $80.000.000")
-    if prestamo < 0.3 or prestamo > 0.6:
-        raise ErrorPrestamo("El porcentaje de prestamo debe estar entre 30% y 60%")
+class ErrorplazoCero(Exception):
+    def __init__(self, *args):
+        super().__init__("ERROR: el plazo del préstamo no puede ser 0 años")
+        
+def cuota_mensual(propiedad, prestamo, tasa, plazo):
+    if propiedad <= 0:
+        raise Errorcompra()
+    elif tasa <= 0:
+        raise Errortasa()
+    elif prestamo > 0.60:  # regla del 60%
+        raise Errorprestamo()
+    elif plazo <= 0:
+        raise ErrorplazoCero()
     else:
-        return propiedad * prestamo
+        return (propiedad * prestamo) / (
+            (1 - (1 + tasa/12) ** (-plazo * 12)) / (tasa/12)
+        )
 
-def total_meses(plazo):
-    if plazo < 5 or plazo > 25:
-        raise ErrorPlazo("El plazo debe estar entre 5 y 25 años")
-    else:
-        return plazo * 12
+if __name__ == "__main__":
+    # ==== PRUEBAS ====
+    # Caso 1: propiedad = 0 → Errorcompra
+    try:
+        print(cuota_mensual(0, 0.5, 0.02, 10))
+    except Exception as e:
+        print(e)
 
-def tasa_mensual(tasa):
-    if tasa < 0.09 or tasa > 0.12:
-        raise ErrorTasa("La tasa de interes debe estar entre 9% y 12%")
-    else:
-        return tasa / 12
+    # Caso 2: tasa = 0 → Errortasa
+    try:
+        print(cuota_mensual(100000, 0.5, 0, 10))
+    except Exception as e:
+        print(e)
 
-def costo_total(propiedad, prestamo, tasa, plazo):
-    cuota = cuota_mensual(propiedad, prestamo, tasa, plazo)
-    meses = total_meses(plazo)
-    return cuota * meses
+    # Caso 3: préstamo = 70% → Errorprestamo
+    try:
+        print(cuota_mensual(100000, 0.7, 0.02, 10))
+    except Exception as e:
+        print(e)
 
-def intereses_totales(propiedad, prestamo, tasa, plazo):
-    cuota = cuota_mensual(propiedad, prestamo, tasa, plazo)
-    meses = total_meses(plazo)
-    monto_prestamo = monto_total_prestamo(propiedad, prestamo)
-    return (cuota * meses) - monto_prestamo
+    # Caso 4: plazo = 0 → ErrorplazoCero
+    try:
+        print(cuota_mensual(100000, 0.5, 0.02, 0))
+    except Exception as e:
+        print(e)
+
+    # Caso 5: valores correctos → calcula cuota
+    try:
+        print(cuota_mensual(100000, 0.5, 0.02, 10))
+    except Exception as e:
+        print(e)
+
+
+

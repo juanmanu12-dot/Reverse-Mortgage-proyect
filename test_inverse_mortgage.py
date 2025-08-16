@@ -88,22 +88,22 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 10/100
         plazo = 15
         
-        with self.assertRaises(Exception):
+        with self.assertRaises(calculadora.Errorcompra):
             cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
 
     def test_error_prestamo(self):
         propiedad = 200000000
-        prestamo = 0.7
+        prestamo = 60/100
         tasa = 10/100
-        plazo = 15
+        plazo = 20
         
         with self.assertRaises(calculadora.ErrorPrestamo):
             cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
     
     def test_error_tasa(self):
         propiedad = 150000000
-        prestamo = 0.5
-        tasa = 0.08
+        prestamo = 50/100
+        tasa = -5/10
         plazo = 10
         
         with self.assertRaises(calculadora.ErrorTasa): 
@@ -112,9 +112,9 @@ class TestInverseMortgage(unittest.TestCase):
     def test_error_plazo(self):
         
         propiedad = 120000000
-        prestamo = 0.4
-        tasa = 0.1
-        plazo = 4
+        prestamo = 40/10
+        tasa = 12/0
+        plazo = 0
         
         with self.assertRaises(calculadora.ErrorPlazo):
             cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)

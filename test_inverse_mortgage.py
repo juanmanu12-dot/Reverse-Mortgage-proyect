@@ -46,8 +46,8 @@ class TestInverseMortgage(unittest.TestCase):
 
 
     
-    unittest.main()
-    def  maximo_permitido(self):
+
+    def  test_maximo_permitido(self):
         propiedad = 1500000000
         prestamo = 60/100
         tasa = 12/100
@@ -60,7 +60,7 @@ class TestInverseMortgage(unittest.TestCase):
         self.assertAlmostEqual( cuota_esperada, cuota_calculada)
 
    
-    def minimo_permitido(self):
+    def test_minimo_permitido(self):
         propiedad = 80000000
         prestamo =30/100
         tasa = 9/100
@@ -71,7 +71,7 @@ class TestInverseMortgage(unittest.TestCase):
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
 
     
-    def plazo_minimo(self):
+    def test_plazo_minimo(self):
         propiedad = 600000000
         prestamo = 50/100
         tasa = 12/100

@@ -4,11 +4,11 @@ import calculadora
 try:
     #obtenemos los datos de entrada
     propiedad  = float (input("ingrese el valor de la propiedad: "))
-    plazo      = int (input ("ingrese el numero de cuotas: "))
+    plazo      = int (input ("Ingrese el número de años del préstamo (entre 5 y 25): "))
     tasa       = float(input ("ingrese la tasa de interes: "))
-    prestamo   = float(input("ingrese la tasa de prestamo"))
+    prestamo   = float(input("ingrese el porcentaje de prestamo: "))
     # realizar el proceso
-    cuota_mensual = calculadora.cuota_mensual( propiedad, tasa, plazo, prestamo)
+    cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
     #mostrar los datos de salida 
 
     print(f"el valor de la cuota es : {cuota_mensual}")

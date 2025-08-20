@@ -1,5 +1,7 @@
-import calculadora
 
+import sys 
+sys.path.append("src")
+from model import calculadora
 
 try:
     #obtenemos los datos de entrada

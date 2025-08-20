@@ -1,5 +1,7 @@
+import sys 
+sys.path.append("src")
 import unittest
-import calculadora
+from model import calculadora
 
 
 class TestInverseMortgage(unittest.TestCase):
@@ -42,10 +44,6 @@ class TestInverseMortgage(unittest.TestCase):
     
         self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
 
-
-
-
-    
 
     def  test_maximo_permitido(self):
         propiedad = 1500000000

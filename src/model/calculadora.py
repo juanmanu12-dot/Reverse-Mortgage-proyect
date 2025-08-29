@@ -15,19 +15,24 @@ class ErrorplazoCero(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: el plazo del préstamo no puede ser menor a 5 o mayor a 25 años")
         
-def cuota_mensual(propiedad, prestamo, tasa, plazo):
+
+def renta_mensual(propiedad, prestamo, tasa, plazo):
     if propiedad <= 0:
         raise Errorcompra()
-    elif tasa < 9/100 or tasa > 12/100:  # tasa de interés anual entre 9% y 12%
+    elif tasa < 9/100 or tasa > 12/100:  
         raise Errortasa()
-    elif prestamo > 0.60 or prestamo < 0.30:  # regla del 60%
+    elif prestamo > 0.60 or prestamo < 0.30:  
         raise Errorprestamo()
-    elif plazo < 5 or plazo > 25:  # regla del plazo
+    elif plazo < 5 or plazo > 25:  
         raise ErrorplazoCero()
     else:
-        return (propiedad * prestamo) / (
-            (1 - (1 + tasa/12) ** (-plazo * 12)) / (tasa/12)
-        )
+        # Monto máximo del préstamo sobre la propiedad
+        monto_prestamo = propiedad * prestamo  
+
+        # cuánto se puede recibir mensualmente
+        renta = monto_prestamo * (tasa/12) / (1 - (1 + tasa/12) ** (-plazo * 12))
+        
+        return renta
 
 if __name__ == "__main__":
     # ==== PRUEBAS ====

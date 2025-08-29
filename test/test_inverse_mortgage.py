@@ -6,30 +6,30 @@ from model import calculadora
 
 class TestInverseMortgage(unittest.TestCase):
     
-    def test_cuota_mensual(self):
+    def test_renta_mensual(self):
         propiedad = 3500000_00
         prestamo = 40/100
         tasa = 10/100
         plazo = 15
 
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
 
-        cuota_esperada = 1504447.16
+        renta_esperada = 1504447.16
         
-        self.assertAlmostEqual(cuota_esperada, cuota_calculada, 2)
+        self.assertAlmostEqual(renta_esperada, renta_calculada, 2)
 
 
-    def test_cuota_mensual_2(self):
+    def test_renta_mensual_2(self):
         propiedad = 200000000
         prestamo = 35/100
         tasa = 11/100
         plazo = 12
     
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
     
-        cuota_esperada = 1875301.89
+        renta_esperada = 1875301.89
     
-        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
 
 
     def test_cuota_mensual_3(self):
@@ -38,11 +38,11 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 10.50/100
         plazo = 20
     
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
     
-        cuota_esperada = 2995140.66
+        renta_esperada = 2995140.66
     
-        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
 
 
     def  test_maximo_permitido(self):
@@ -51,11 +51,11 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 12/100
         plazo = 25
     
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
     
-        cuota_esperada = 9479017.28
+        renta_esperada = 9479017.28
     
-        self.assertAlmostEqual( cuota_esperada, cuota_calculada)
+        self.assertAlmostEqual( renta_esperada, renta_calculada)
 
    
     def test_minimo_permitido(self):
@@ -64,9 +64,9 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 9/100
         plazo = 10
         
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
-        cuota_esperada =  304021.86
-        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
+        renta_esperada =  304021.86
+        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
 
     
     def test_plazo_minimo(self):
@@ -74,40 +74,40 @@ class TestInverseMortgage(unittest.TestCase):
         prestamo = 50/100
         tasa = 12/100
         plazo = 5
-        cuota_calculada = calculadora.cuota_mensual(propiedad,prestamo, tasa, plazo )
-        cuota_esperada =  6597782.21
-        self.assertAlmostEqual( cuota_esperada, cuota_calculada,2)
+        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
+        renta_esperada =  6597782.21
+        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
 
 
     
-    def test_error_compra(self):
+    def test_Error_compra(self):
         propiedad = 0
         prestamo = 50/100
         tasa = 10/100
         plazo = 15
         
         with self.assertRaises(calculadora.Errorcompra):
-            cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
+            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
 
-    def test_error_prestamo(self):
+    def test_Error_prestamo(self):
         propiedad = 200000000
         prestamo = 60/100
         tasa = 10/100
         plazo = 20
         
         with self.assertRaises(calculadora.ErrorPrestamo):
-            cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
+            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
     
-    def test_error_tasa(self):
+    def test_Error_tasa(self):
         propiedad = 150000000
         prestamo = 50/100
         tasa = -5/10
         plazo = 10
         
         with self.assertRaises(calculadora.ErrorTasa): 
-            cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
+            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
             
-    def test_error_plazo(self):
+    def test_Error_plazo(self):
         
         propiedad = 120000000
         prestamo = 40/10
@@ -115,7 +115,7 @@ class TestInverseMortgage(unittest.TestCase):
         plazo = 0
         
         with self.assertRaises(calculadora.ErrorPlazo):
-            cuota_mensual = calculadora.cuota_mensual(propiedad, prestamo, tasa, plazo)
+            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
                     
 if __name__ == '__main__':
     unittest.main()

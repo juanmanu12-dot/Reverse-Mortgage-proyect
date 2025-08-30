@@ -1,121 +1,111 @@
-import sys 
+import sys
 sys.path.append("src")
 import unittest
 from model import calculadora
 
 
 class TestInverseMortgage(unittest.TestCase):
-    
-    def test_renta_mensual(self):
-        propiedad = 3500000_00
-        prestamo = 40/100
-        tasa = 10/100
-        plazo = 15
 
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-
-        renta_esperada = 1504447.16
-        
-        self.assertAlmostEqual(renta_esperada, renta_calculada, 2)
-
-
-    def test_renta_mensual_2(self):
+    def test_renta_mensual_basica(self):
         propiedad = 200000000
-        prestamo = 35/100
-        tasa = 11/100
-        plazo = 12
-    
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-    
-        renta_esperada = 1875301.89
-    
-        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
+        prestamo = 1.0   # 100% préstamo
+        tasa = 10/100
+        edad = 70   # plazo = 20 años (90 - 70)
 
-
-    def test_cuota_mensual_3(self):
-        propiedad = 600000000
-        prestamo = 50/100
-        tasa = 10.50/100
-        plazo = 20
-    
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-    
-        renta_esperada = 2995140.66
-    
-        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
-
-
-    def  test_maximo_permitido(self):
-        propiedad = 1500000000
-        prestamo = 60/100
-        tasa = 12/100
-        plazo = 25
-    
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-    
-        renta_esperada = 9479017.28
-    
-        self.assertAlmostEqual( renta_esperada, renta_calculada)
-
-   
-    def test_minimo_permitido(self):
-        propiedad = 80000000
-        prestamo =30/100
-        tasa = 9/100
-        plazo = 10
+        resultado = calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
         
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-        renta_esperada =  304021.86
-        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
+        renta_calculada = resultado["renta_mensual"]
+        plazo = resultado["plazo"]
 
-    
-    def test_plazo_minimo(self):
-        propiedad = 600000000
-        prestamo = 50/100
-        tasa = 12/100
-        plazo = 5
-        renta_calculada = calculadora.renta_mensual(propiedad,prestamo, tasa, plazo )
-        renta_esperada =  6597782.21
-        self.assertAlmostEqual( renta_esperada, renta_calculada,2)
+        self.assertEqual(plazo, 20)
+        self.assertAlmostEqual(renta_calculada, 1937960.50, 2)
 
 
-    
+    def test_renta_mensual_otro(self):
+        propiedad = 150000000
+        prestamo = 0.8
+        tasa = 11/100
+        edad = 75  # plazo15años
+
+        resultado = calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+        renta_calculada = resultado["renta_mensual"]
+        self.assertAlmostEqual(renta_calculada, 1183471.79, 2)
+
+
+    def test_plazo_correcto(self):
+        propiedad = 300000000
+        prestamo = 1.0
+        tasa = 9.5/100
+        edad = 68  # plazo22años
+
+        resultado = calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+        self.assertEqual(resultado["plazo"], 22)
+        self.assertTrue(resultado["deuda_final"] > 0)
+
+
     def test_Error_compra(self):
         propiedad = 0
-        prestamo = 50/100
+        prestamo = 1.0
         tasa = 10/100
-        plazo = 15
+        edad = 70
         
         with self.assertRaises(calculadora.Errorcompra):
-            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
+            calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+
+    def test_Error_tasa(self):
+        propiedad = 200000000
+        prestamo = 0.9
+        tasa = 20/100   # fuera de rango (mayor a 12%)
+        edad = 72
+
+        with self.assertRaises(calculadora.Errortasa):
+            calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
 
     def test_Error_prestamo(self):
-        propiedad = 200000000
-        prestamo = 60/100
-        tasa = 10/100
-        plazo = 20
-        
-        with self.assertRaises(calculadora.ErrorPrestamo):
-            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
-    
-    def test_Error_tasa(self):
-        propiedad = 150000000
-        prestamo = 50/100
-        tasa = -5/10
-        plazo = 10
-        
-        with self.assertRaises(calculadora.ErrorTasa): 
-            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
-            
-    def test_Error_plazo(self):
-        
         propiedad = 120000000
-        prestamo = 40/10
-        tasa = 12/0
-        plazo = 0
+        prestamo = 1.5  # más del 100%
+        tasa = 10/100
+        edad = 70
         
-        with self.assertRaises(calculadora.ErrorPlazo):
-            renta_mensual = calculadora.renta_mensual(propiedad, prestamo, tasa, plazo)
-                    
+        with self.assertRaises(calculadora.Errorprestamo):
+            calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+
+    def test_Error_edad(self):
+        propiedad = 100000000
+        prestamo = 1.0
+        tasa = 10/100
+        edad = 60   # menor a 65 permitido
+        
+        with self.assertRaises(calculadora.Erroredad):
+            calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+
+    def test_Error_plazo(self):
+        propiedad = 80000000
+        prestamo = 1.0
+        tasa = 9.5/100
+        edad = 88   # plazo = 2 años (menor a 5 permitido)
+
+        with self.assertRaises(calculadora.Errorplazo):
+            calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+
+
+    def test_recomendacion_vender(self):
+        propiedad = 200000000
+        prestamo = 0.5
+        tasa = 10/100
+        edad = 70
+
+        resultado = calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
+        
+        self.assertIn("recomendacion", resultado)
+        self.assertTrue("Conviene" in resultado["recomendacion"])
+
+
 if __name__ == '__main__':
     unittest.main()

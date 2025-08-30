@@ -28,11 +28,7 @@ try:
     print(f"- Edad del solicitante al final del contrato: {edad + plazo} años")
 
 except (ValueError, calculadora.Errorcompra, calculadora.Errortasa, 
-        calculadora.Errorprestamo, calculadora.Errorplazo) as e:
+        calculadora.Errorprestamo, calculadora.ErrorplazoCero) as e:
     print(e)
     print("⚠️ Por favor verifique los datos ingresados.")
-
-
-
-
 

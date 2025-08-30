@@ -2,20 +2,27 @@
 
 
 ## Descripcion del proyecto
-Esta aplicación permite calcular la renta mensual que un usuario podría recibir en una hipoteca inversa. En este tipo de hipoteca, el banco paga al propietario un monto mensual durante un plazo acordado, y la deuda se liquida normalmente con la venta de la propiedad al finalizar el contrato.
+-El banco entrega al propietario una renta mensual basada en el valor de su vivienda.
+-El propietario no paga cuotas durante el contrato.
+-Al fallecimiento del titular o al finalizar el plazo, la deuda se liquida con la venta de la propiedad o con recursos de los herederos.
 ## Entradas
--Valor de la propiedad  <br> 
--Porcentaje del préstamo (30%-60%) <br> 
--Tasa de interés anual (%)  <br> 
--Plazo del contrato (años)
+-Valor de la propiedad (COP): precio de la vivienda.
+-Porcentaje del préstamo: puede ser de 0% hasta 100% del valor de la propiedad.
+-Tasa de interés anual (%): entre 9% y 12%.
+-Edad del propietario (años): debe estar entre 65 y 90 años.
+-El plazo se calcula automáticamente como 90 - edad (años restantes hasta los 90).
+-El plazo mínimo permitido es de 5 años.
 
 ## Salidas
--Monto total del préstamo<br>
--Tasa de interés mensual<br>
--Total de meses<br>
--Cuota mensual (COP)	<br>
--Costo total del préstamo<br>
--Intereses totales pagados
+-Renta mensual (COP): el monto que recibe el propietario cada mes.
+-Plazo del contrato (años): definido según la edad.
+-Monto total del préstamo (COP): valor máximo prestado sobre la vivienda.
+-Deuda final acumulada (COP): total que debe liquidarse al final del contrato.
+-Opciones para herederos:
+1Vender la vivienda y pagar la deuda.
+2Pagar la deuda con otros recursos.
+3Entregar la vivienda al banco.
+Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla al banco, comparando el valor de la deuda con el valor de la vivienda.
 
 ## Autores
 -Esteban Arias Salazar<br>

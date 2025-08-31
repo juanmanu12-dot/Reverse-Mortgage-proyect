@@ -1,38 +1,38 @@
-class Errorcompra(Exception):
+class ErrorCompra(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: el valor de la propiedad no puede ser cero")
 
-class Errortasa(Exception):
+class ErrorTasa(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: la tasa de interés no puede ser menor al 9 o mayor al 12 por ciento anual")
 
-class Errorprestamo(Exception):
+class ErrorPrestamo(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: el porcentaje del préstamo no puede ser mayor al 100% ni menor o igual a 0")
 
-class Erroredad(Exception):
+class ErrorEdad(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: la edad debe estar entre 65 y 90 años")
 
-class Errorplazo(Exception):
+class ErrorPlazo(Exception):
     def __init__(self, *args):
         super().__init__("ERROR: el plazo calculado a partir de la edad debe ser al menos 5 años")
 
 
 def hipoteca_inversa(propiedad, prestamo, tasa, edad):
     if propiedad <= 0:
-        raise Errorcompra()
+        raise ErrorCompra()
     elif tasa < 9/100 or tasa > 12/100:  
-        raise Errortasa()
+        raise ErrorTasa()
     elif prestamo <= 0 or prestamo > 1.0:  
-        raise Errorprestamo()
+        raise ErrorPrestamo()
     elif edad < 65 or edad > 90:  
-        raise Erroredad()
+        raise ErrorEdad()
     else:
         # Plazo definido por la edad (hasta 90 años)
         plazo = 90 - edad  
         if plazo < 5:
-            raise Errorplazo()
+            raise ErrorPlazo()
 
         # Monto máximo del préstamo sobre la propiedad
         monto_prestamo = propiedad * prestamo  

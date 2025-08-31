@@ -51,7 +51,7 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 10/100
         edad = 70
         
-        with self.assertRaises(calculadora.Errorcompra):
+        with self.assertRaises(calculadora.ErrorCompra):
             calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
 
 
@@ -61,7 +61,7 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 20/100   # fuera de rango (mayor a 12%)
         edad = 72
 
-        with self.assertRaises(calculadora.Errortasa):
+        with self.assertRaises(calculadora.ErrorTasa):
             calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
 
 
@@ -71,7 +71,7 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 10/100
         edad = 70
         
-        with self.assertRaises(calculadora.Errorprestamo):
+        with self.assertRaises(calculadora.ErrorPrestamo):
             calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
 
 
@@ -81,7 +81,7 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 10/100
         edad = 60   # menor a 65 permitido
         
-        with self.assertRaises(calculadora.Erroredad):
+        with self.assertRaises(calculadora.ErrorEdad):
             calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
 
 
@@ -91,7 +91,7 @@ class TestInverseMortgage(unittest.TestCase):
         tasa = 9.5/100
         edad = 88   # plazo = 2 años (menor a 5 permitido)
 
-        with self.assertRaises(calculadora.Errorplazo):
+        with self.assertRaises(calculadora.ErrorPlazo):
             calculadora.hipoteca_inversa(propiedad, prestamo, tasa, edad)
 
 

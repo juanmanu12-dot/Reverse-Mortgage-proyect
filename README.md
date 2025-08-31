@@ -48,3 +48,19 @@ El sistema te pedirá que ingreses los siguientes datos paso a paso:
 -Años del préstamo (entre 5 y 25)
 -Tasa de interés anual (%)
 -Porcentaje del préstamo
+
+## Cómo ejecutar los tests
+
+1. Abre la terminal en Visual Studio Code.
+2. Navega a la carpeta del proyecto(Por Ejemplo):
+   ```
+   cd "d:\Descargas D\Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
+   ```
+3. Ejecuta el archivo de test con unittest:
+   ```
+   python -m unittest test/test_inverse_mortgage.py
+   ```
+
+Esto ejecutará todas las pruebas y mostrará los resultados
+   
+   

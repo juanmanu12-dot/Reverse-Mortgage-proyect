@@ -33,3 +33,18 @@ Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla
 -Entrar al proyecto: reverse mortgage
 -Ejecutar el programa: python main.py
 -Ejecutar pruebas unitarias: python -m unittest discover
+## Cómo ejecutar la aplicación en consola
+
+1. *Abre la terminal o PowerShell* en la carpeta del proyecto  
+   (ejemplo: D:\Documents\Reverse-Mortgage-proyect-3).
+
+2. *Ejecuta el programa* con uno de estos comandos:
+   ```bash
+   py main.py
+Sigue las instrucciones en pantalla:
+El sistema te pedirá que ingreses los siguientes datos paso a paso:
+-Edad del solicitante
+-Valor de la propiedad
+-Años del préstamo (entre 5 y 25)
+-Tasa de interés anual (%)
+-Porcentaje del préstamo

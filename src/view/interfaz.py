@@ -27,8 +27,8 @@ try:
     print(f"- Cuota mensual: ${cuota_mensual:,.2f}")
     print(f"- Edad del solicitante al final del contrato: {edad + plazo} años")
 
-except (ValueError, calculadora.Errorcompra, calculadora.Errortasa, 
-        calculadora.Errorprestamo, calculadora.Errorplazo) as excepciones:
+except (ValueError, calculadora.ErrorCompra, calculadora.ErrorTasa, 
+        calculadora.ErrorPrestamo, calculadora.ErrorPlazo) as excepciones:
     print(excepciones)
     print("⚠️ Por favor verifique los datos ingresados.")
 

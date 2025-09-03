@@ -40,11 +40,11 @@ Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla
 1. Abre la terminal en Visual Studio Code.
 2. Navega a la carpeta raíz del proyecto:
    ```
-   cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect\src\view"
+   cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
    ```
 3. Ejecuta el archivo principal de la interfaz:
    ```
-   python main.py
+   python src/viwe/interfaz.py
    ```
 4. Ingresa los datos solicitados en la consola para simular la hipoteca inversa.
 

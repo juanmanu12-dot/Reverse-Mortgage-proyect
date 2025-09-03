@@ -40,7 +40,7 @@ Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla
 1. Abre la terminal en Visual Studio Code.
 2. Navega a la carpeta raíz del proyecto:
    ```
-   cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
+   cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect\src\view\interfaz"
    ```
 3. Ejecuta el archivo principal de la interfaz:
    ```
@@ -55,7 +55,7 @@ Esto iniciará la interfaz de consola y podrás realizar simulaciones directamen
 1. Abre la terminal en Visual Studio Code.
 2. Navega a la carpeta del proyecto(Por Ejemplo):
    ```
-   cd "d:\Descargas D\Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
+   cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
    ```
 3. Ejecuta el archivo de test con unittest:
    ```

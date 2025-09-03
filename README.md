@@ -59,7 +59,7 @@ Esto iniciará la interfaz de consola y podrás realizar simulaciones directamen
    ```
 3. Ejecuta el archivo de test con unittest:
    ```
-   python -m unittest test/test_inverse_mortgage.py
+   py test/test_inverse_mortgage.py
    ```
 
 Esto ejecutará todas las pruebas y mostrará los resultados

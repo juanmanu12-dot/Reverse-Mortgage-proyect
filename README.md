@@ -44,7 +44,7 @@ Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla
    ```
 3. Ejecuta el archivo principal de la interfaz:
    ```
-   python src/viwe/interfaz.py
+   python src/view/interfaz.py
    ```
 4. Ingresa los datos solicitados en la consola para simular la hipoteca inversa.
 

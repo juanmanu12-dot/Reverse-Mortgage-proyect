@@ -35,19 +35,20 @@ Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla
 -Ejecutar pruebas unitarias: python -m unittest discover
 ## Cómo ejecutar la aplicación en consola
 
-1. *Abre la terminal o PowerShell* en la carpeta del proyecto  
-   (ejemplo: D:\Documents\Reverse-Mortgage-proyect-3).
 
-2. *Ejecuta el programa* con uno de estos comandos:
-   ```bash
-   py main.py
-Sigue las instrucciones en pantalla:
-El sistema te pedirá que ingreses los siguientes datos paso a paso:
--Edad del solicitante
--Valor de la propiedad
--Años del préstamo (entre 5 y 25)
--Tasa de interés anual (%)
--Porcentaje del préstamo
+
+1. Abre la terminal en Visual Studio Code.
+2. Navega a la carpeta raíz del proyecto:
+   ```
+   cd "d:\Descargas D\Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
+   ```
+3. Ejecuta el archivo principal de la interfaz:
+   ```
+   python main.py
+   ```
+4. Ingresa los datos solicitados en la consola para simular la hipoteca inversa.
+
+Esto iniciará la interfaz de consola y podrás realizar simulaciones directamente desde la
 
 ## Cómo ejecutar los tests
 

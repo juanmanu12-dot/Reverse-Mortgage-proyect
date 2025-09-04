@@ -2,26 +2,26 @@
 
 
 ## Descripcion del proyecto
--El banco entrega al propietario una renta mensual basada en el valor de su vivienda.
--El propietario no paga cuotas durante el contrato.
--Al fallecimiento del titular o al finalizar el plazo, la deuda se liquida con la venta de la propiedad o con recursos de los herederos.
+-El banco entrega al propietario una renta mensual basada en el valor de su vivienda.<br>
+-El propietario no paga cuotas durante el contrato.<br>
+-Al fallecimiento del titular o al finalizar el plazo, la deuda se liquida con la venta de la propiedad o con recursos de los herederos.<br>
 ## Entradas
--Valor de la propiedad (COP): precio de la vivienda.
--Porcentaje del préstamo: puede ser de 0% hasta 100% del valor de la propiedad.
--Tasa de interés anual (%): entre 9% y 12%.
--Edad del propietario (años): debe estar entre 65 y 90 años.
--El plazo se calcula automáticamente como 90 - edad (años restantes hasta los 90).
--El plazo mínimo permitido es de 5 años.
+-Valor de la propiedad (COP): precio de la vivienda.<br>
+-Porcentaje del préstamo: puede ser de 0% hasta 100% del valor de la propiedad.<br>
+-Tasa de interés anual (%): entre 9% y 12%.<br>
+-Edad del propietario (años): debe estar entre 65 y 90 años.<br>
+-El plazo se calcula automáticamente como 90 - edad (años restantes hasta los 90).<br>
+-El plazo mínimo permitido es de 5 años.<br>
 
 ## Salidas
--Renta mensual (COP): el monto que recibe el propietario cada mes.
--Plazo del contrato (años): definido según la edad.
--Monto total del préstamo (COP): valor máximo prestado sobre la vivienda.
--Deuda final acumulada (COP): total que debe liquidarse al final del contrato.
+-Renta mensual (COP): el monto que recibe el propietario cada mes.<br>
+-Plazo del contrato (años): definido según la edad.<br>
+-Monto total del préstamo (COP): valor máximo prestado sobre la vivienda.<br>
+-Deuda final acumulada (COP): total que debe liquidarse al final del contrato.<br>
 -Opciones para herederos:
-1Vender la vivienda y pagar la deuda.
-2Pagar la deuda con otros recursos.
-3Entregar la vivienda al banco.
+1) Vender la vivienda y pagar la deuda.<br>
+2) Pagar la deuda con otros recursos.<br>
+3) Entregar la vivienda al banco.<br>
 Recomendación del sistema: sugiere si conviene vender la propiedad o entregarla al banco, comparando el valor de la deuda con el valor de la vivienda.
 
 ## Autores

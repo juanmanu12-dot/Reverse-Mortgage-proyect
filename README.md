@@ -52,13 +52,15 @@ Esto iniciará la interfaz de consola y podrás realizar simulaciones directamen
 
 ## Cómo ejecutar los tests
 
-1. Abre la terminal en Visual Studio Code.
+1. Abre la terminal ya sea en Visual Studio Code o usando cmd.
 2. Navega a la carpeta del proyecto(Por Ejemplo):
    ```
+   cmd
    cd "Reverse_mortgage_calculator\Reverse-Mortgage-proyect"
    ```
 3. Ejecuta el archivo de test con unittest:
    ```
+   cmd
    py test/test_inverse_mortgage.py
    ```
 

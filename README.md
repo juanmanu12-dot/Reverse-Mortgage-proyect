@@ -81,21 +81,7 @@ git clone https://github.com/estebanariassa/Reverse-Mortgage-proyect.git
 cd Reverse-Mortgage-proyect
 ```
 
-### 3. Ejecutar la aplicación principal
-
-```bash
-python main.py
-```
-
-Esto ejecuta la lógica de simulación por consola (sin interfaz gráfica).
-
 ### 4. Ejecutar las pruebas unitarias
-
-```bash
-python -m unittest discover
-```
-
-También puedes ejecutar un archivo de prueba específico:
 
 ```bash
 python test/test_inverse_mortgage.py
@@ -104,7 +90,7 @@ python test/test_inverse_mortgage.py
 ### 5. Ejecutar la interfaz gráfica (Kivy)
 
 ```bash
-python src/view/interfaz.py
+pip install kivymd
 ```
 
 Esto abrirá la aplicación con la interfaz gráfica desarrollada en Kivy. Desde allí podrás ingresar los datos y simular la hipoteca inversa visualmente.

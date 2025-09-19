@@ -1,57 +1,138 @@
-from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
+from kivymd.app import MDApp
+from kivymd.uix.screen import Screen
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label import MDLabel
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.card import MDCard
+from kivymd.uix.behaviors import CommonElevationBehavior
 
-
-class HipotecaInversaApp(App):
+class HipotecaInversaApp(MDApp):
     def build(self):
-        self.contenedor = BoxLayout(orientation="vertical", padding=20, spacing=15)
-        self.titulo = Label(text="Simulador de Hipoteca Inversa", font_size=28, bold=True)
-        self.contenedor.add_widget(self.titulo)
+        # Tema claro
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Blue"
 
-        
-        self.contenedor.add_widget(Label(text="Valor de la propiedad:", font_size=18))
-        self.propiedad = TextInput(multiline=False, hint_text="Ejemplo: 200000")
-        self.contenedor.add_widget(self.propiedad)
+        screen = Screen()
 
-        # Campo: Edad
-        self.contenedor.add_widget(Label(text="Edad del propietario:", font_size=18))
-        self.edad = TextInput(multiline=False, hint_text="Ejemplo: 70")
-        self.contenedor.add_widget(self.edad)
 
-        
-        self.contenedor.add_widget(Label(text="Tasa de interés anual (%):", font_size=18))
-        self.tasa = TextInput(multiline=False, hint_text="Ejemplo: 5")
-        self.contenedor.add_widget(self.tasa)
+        layout_fondo = MDBoxLayout(
+            orientation="vertical",
+            size_hint=(1, 1),
+            md_bg_color=(0.93, 0.96, 1, 1),
+            padding=20,
+        )
+        screen.add_widget(layout_fondo)
 
-        
-        boton_calcular = Button(text="Calcular Hipoteca Inversa", size_hint=(1, 0.3), background_color=(0, 0.5, 1, 1))
-        boton_calcular.bind(on_press=self.calcular)
-        self.contenedor.add_widget(boton_calcular)
+        # Tarjeta que contiene el formulario, con elevación para sombra
+        card = MDCard(
+            size_hint=(None, None),
+            size=("420dp", "500dp"),
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            elevation=10,
+            radius=(20, 20, 20, 20),
+            padding=20,
+        )
+        layout_fondo.add_widget(card)
 
-        
-        self.resultado = Label(text="Resultado aparecerá aquí.", font_size=20, color=(0.2, 0.2, 0.2, 1))
-        self.contenedor.add_widget(self.resultado)
+        # Dentro del card, un BoxLayout vertical para los campos
+        cont = MDBoxLayout(
+            orientation="vertical",
+            spacing=20,
+            size_hint=(1, None),
+        )
+        # poner altura flexible con contenido
+        card.add_widget(cont)
 
-        return self.contenedor
+        # Título
+        titulo = MDLabel(
+            text="Simulador de Hipoteca Inversa",
+            halign="center",
+            font_style="H5",
+            size_hint=(1, None),
+            height="40dp",
+        )
+        cont.add_widget(titulo)
 
-    def calcular(self, sender):
+        # Campo: valor de la propiedad
+        self.propiedad = MDTextField(
+            hint_text="Valor de la propiedad (Ej: 200000)",
+            size_hint=(None, None),
+            width="300dp",
+            height="40dp",
+            pos_hint={"center_x": 0.5},
+            mode="rectangle",
+            required=True,
+        )
+        cont.add_widget(self.propiedad)
+
+        # Campo: edad
+        self.edad = MDTextField(
+            hint_text="Edad del propietario (Ej: 70)",
+            size_hint=(None, None),
+            width="300dp",
+            height="40dp",
+            pos_hint={"center_x": 0.5},
+            required=True,
+        )
+        cont.add_widget(self.edad)
+
+        # Campo: tasa de interés anual
+        self.tasa = MDTextField(
+            hint_text="Tasa de interés anual (%) (Ej: 5)",
+            size_hint=(None, None),
+            width="300dp",
+            height="40dp",
+            pos_hint={"center_x": 0.5},
+            required=True,
+        )
+        cont.add_widget(self.tasa)
+
+        # Botón de calcular
+        btn = MDRectangleFlatButton(
+            text="Calcular",
+            size_hint=(None, None),
+            width="200dp",
+            height="45dp",
+            pos_hint={"center_x": 0.5},
+            on_release=self.calcular
+        )
+        cont.add_widget(btn)
+
+        # Label para resultado
+        self.resultado = MDLabel(
+            text="Resultado aparecerá aquí.",
+            halign="center",
+            font_style="Subtitle1",
+            size_hint=(1, None),
+            height="30dp"
+        )
+        cont.add_widget(self.resultado)
+
+        return screen
+
+    def calcular(self, instance):
+        # Validaciones simples
+        errores = []
         try:
             valor = float(self.propiedad.text.strip())
-            edad = int(self.edad.text.strip())
-            tasa = float(self.tasa.text.strip()) / 100  
-
-        
-            factor_edad = max(0.3, (edad - 60) / 100)  
-            monto_mensual = (valor * factor_edad * tasa) / 12
-
-            self.resultado.text = f"Monto mensual estimado: ${monto_mensual:,.2f}"
-
         except ValueError:
-            self.resultado.text = " Ingrese datos válidos en todos los campos."
+            errores.append("Valor de propiedad inválido.")
+        try:
+            edad = int(self.edad.text.strip())
+        except ValueError:
+            errores.append("Edad inválida.")
+        try:
+            tasa = float(self.tasa.text.strip()) / 100
+        except ValueError:
+            errores.append("Tasa inválida.")
 
+        if errores:
+            self.resultado.text = "\n".join(errores)
+        else:
+            factor_edad = max(0.3, (edad - 60) / 100)
+            monto_mensual = (valor * factor_edad * tasa) / 12
+            self.resultado.text = f"Monto mensual estimado: ${monto_mensual:,.2f}"
 
 if __name__ == "__main__":
     HipotecaInversaApp().run()

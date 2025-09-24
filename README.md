@@ -84,7 +84,7 @@ cd Reverse-Mortgage-proyect
 ### 4. Ejecutar las pruebas unitarias
 
 ```bash
-python test/test_inverse_mortgage.py
+py test/test_inverse_mortgage.py
 ```
 
 ### 5. Ejecutar la interfaz gráfica (Kivy)
